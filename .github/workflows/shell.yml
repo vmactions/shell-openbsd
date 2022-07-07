@@ -1,0 +1,24 @@
+
+name: shell
+
+on: [push, workflow_dispatch]
+
+jobs:
+  runshell:
+    runs-on: macos-12
+    name: Start a openbsd shell
+    steps:
+    - name: Starting a openbsd VM, please wait. It may take 3 minutes
+      id: shell
+      uses: vmactions/openbsd-vm@v0.0.1
+      with:
+        run: |
+          pwd
+          ls -lah
+          whoami
+          env
+          uname -a
+    - name: Sleep
+      run: sleep 5
+    - uses: neilpang/debugger-action@master
+
