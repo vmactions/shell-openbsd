@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Starting a openbsd VM, please wait. It may take 3 minutes
       id: shell
-      uses: vmactions/openbsd-vm@v0.0.1
+      uses: vmactions/openbsd-vm@main
       with:
         run: |
           pwd
