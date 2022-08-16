@@ -12,6 +12,7 @@ jobs:
       id: shell
       uses: vmactions/openbsd-vm@main
       with:
+        release: 6.9
         run: |
           pwd
           ls -lah
