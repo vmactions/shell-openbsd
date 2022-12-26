@@ -12,8 +12,6 @@ jobs:
       id: shell
       uses: vmactions/openbsd-vm@main
       with:
-        release: 7.2
-        sync: sshfs
         run: |
           pwd
           ls -lah
