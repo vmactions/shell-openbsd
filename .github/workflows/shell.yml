@@ -5,13 +5,23 @@ on: [push, workflow_dispatch]
 
 jobs:
   runshell:
-    runs-on: macos-12
+    runs-on: ubuntu-22.04
     name: Start a openbsd shell
     steps:
+    - uses: vmactions/cf-tunnel@v0
+      id: tunnel
+      with:
+        protocol: http
+        port: 8000
+    - name: Set envs
+      run: echo "TestingDomain=${{steps.tunnel.outputs.server}}" >> $GITHUB_ENV
     - name: Starting a openbsd VM, please wait. It may take 3 minutes
       id: shell
       uses: vmactions/openbsd-vm@main
       with:
+        nat: |
+          "8000": "80"
+        envs: 'TestingDomain TEST_PREFERRED_CHAIN TEST_ACME_Server INPUT_*'
         run: |
           pwd
           ls -lah
@@ -19,6 +29,6 @@ jobs:
           env
           uname -a
     - name: Sleep
-      run: sleep 5
+      run: for i in $(seq 1 10) ; do echo $i; sleep 1; done
     - uses: neilpang/debugger-action@master
 
