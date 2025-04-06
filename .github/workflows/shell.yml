@@ -19,6 +19,7 @@ jobs:
       id: shell
       uses: vmactions/openbsd-vm@v1
       with:
+        arch: aarch64
         nat: |
           "8000": "80"
         envs: 'TestingDomain TEST_PREFERRED_CHAIN TEST_ACME_Server INPUT_*'
