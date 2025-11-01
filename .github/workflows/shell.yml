@@ -5,7 +5,7 @@ on: [push, workflow_dispatch]
 
 jobs:
   runshell:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     name: Start a openbsd shell
     steps:
     - uses: vmactions/cf-tunnel@v0
