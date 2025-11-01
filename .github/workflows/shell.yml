@@ -20,7 +20,7 @@ jobs:
       uses: vmactions/openbsd-vm@v1
       with:
         arch: aarch64
-        release: "7.5"
+        release: "7.8"
         nat: |
           "8000": "80"
         envs: 'TestingDomain TEST_PREFERRED_CHAIN TEST_ACME_Server INPUT_*'
