@@ -15,22 +15,22 @@ jobs:
         port: 8000
     - name: Set envs
       run: echo "TestingDomain=${{steps.tunnel.outputs.server}}" >> $GITHUB_ENV
-    - name: Starting a openbsd VM, please wait. It may take 3 minutes
-      id: shell
-      uses: vmactions/openbsd-vm@v1
-      with:
-        arch: aarch64
-        release: "7.8"
-        nat: |
-          "8000": "80"
-        envs: 'TestingDomain TEST_PREFERRED_CHAIN TEST_ACME_Server INPUT_*'
-        sync: rsync
-        run: |
-          pwd
-          ls -lah
-          whoami
-          env
-          uname -a
+#    - name: Starting a openbsd VM, please wait. It may take 3 minutes
+#      id: shell
+#      uses: vmactions/openbsd-vm@v1
+#      with:
+#        arch: aarch64
+#        release: "7.8"
+#        nat: |
+#          "8000": "80"
+#        envs: 'TestingDomain TEST_PREFERRED_CHAIN TEST_ACME_Server INPUT_*'
+#        sync: rsync
+#        run: |
+#          pwd
+#          ls -lah
+#          whoami
+#          env
+#          uname -a
     - name: Sleep
       run: for i in $(seq 1 10) ; do echo $i; sleep 1; done
     - uses: neilpang/debugger-action@master
